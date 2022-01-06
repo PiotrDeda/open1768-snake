@@ -15,8 +15,12 @@
 // #########  #####   |
 // #########          |
 // #########         \|/
-#DEFINE CELL_SIZE 9
-#DEFINE APPLE_OFFSET 2
+#define CELL_SIZE 9
+#define APPLE_OFFSET 2
+#define GRID_SIZE_X (LCD_MAX_X / 8)
+#define GRID_SIZE_Y (LCD_MAX_Y / 8)
+
+enum MovementDirection {LEFT, RIGHT, UP, DOWN};
 
 int snake_head_x = lcd_to_snake(LCD_MAX_X / 2);
 int snake_head_y = lcd_to_snake(LCD_MAX_Y / 2);
@@ -54,6 +58,26 @@ void config_Timer()
 	NVIC_EnableIRQ(TIMER0_IRQn);
 }
 
+void move_snake(MovementDirection direction)
+{
+	switch (direction)
+	{
+		case LEFT:
+			// Moving left
+			break;
+		case RIGHT:
+			// Moving right
+			break;
+		case UP:
+			// Moving up
+			break;
+		case DOWN:
+			// Moving down
+			break;
+	}
+	// Draw board
+}
+
 int touch_x, touch_y;
 
 void TIMER0_IRQHandler(void)
@@ -64,38 +88,40 @@ void TIMER0_IRQHandler(void)
 	touch_x = lcd_to_snake(touch_x);
 	touch_y = lcd_to_snake(touch_y);
 	
+	MovementDirection direction;
 	if (touch_x < snake_head_x && touch_y > snake_head_y - touch_x && touch_y < snake_head_y + touch_x)
-	{
-		// move left
-	}
+		direction = LEFT;
 	else if (touch_x > snake_head_x && touch_y > snake_head_y - (touch_x - snake_head_x) && touch_y < snake_head_y + (touch_x - snake_head_x))
-	{
-		// move right
-	}
+		direction = RIGHT;
 	else if (touch_y < snake_head_y)
-	{
-		// move up
-	}
-	else if (touch_y > snake_head_y)
-	{
-		// move down
-	}
+		direction = UP;
+	else
+		direction = DOWN;
+	move_snake(direction);
 	
 	LPC_TIM0->IR = 1;
 }
 
-void config()
-{
+short grid[GRID_SIZE_X][GRID_SIZE_Y];
+
+int main()
+{ 
 	lcdConfiguration();
 	init_ILI9325();
 	touchpanelInit();
 	calibrate();
+	
+	for (int i = 0; i < GRID_SIZE_X; i++)
+		for (int j = 0; j < GRID_SIZE_Y; j++)
+			grid[i][j] = 0;
+	// Starting snake position
+	grid[5][5] = 5;
+	grid[5][6] = 4;
+	grid[5][7] = 3;
+	grid[5][8] = 2;
+	grid[5][9] = 1;
+	
 	config_Timer();
-}
-
-int main()
-{ 
-	config();
 	
 	while(1);
 }
