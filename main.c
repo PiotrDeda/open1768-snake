@@ -24,6 +24,7 @@ enum MovementDirection {LEFT, RIGHT, UP, DOWN};
 
 int snake_head_x = lcd_to_snake(LCD_MAX_X / 2);
 int snake_head_y = lcd_to_snake(LCD_MAX_Y / 2);
+int snake_size = 5;
 
 // Convert LCD coords to Snake coords
 int lcd_to_snake(int x, int *y)
@@ -40,13 +41,13 @@ int snake_to_lcd(int x)
 // Draw a body part of Snake from Snake coords
 void draw_snake_part(int x, int y)
 {
-	draw_rectangle(snake_to_lcd(x), snake_to_lcd(y), CELL_SIZE, CELL_SIZE, LCDBlack);
+	draw_rectangle(snake_to_lcd(x), snake_to_lcd(y), CELL_SIZE, CELL_SIZE, LCDWhite);
 }
 
 // Draw an apple from Snake coords
 void draw_apple(int x, int y)
 {
-	draw_rectangle(snake_to_lcd(x) + APPLE_OFFSET, snake_to_lcd(y) + APPLE_OFFSET, CELL_SIZE - 2 * APPLE_OFFSET, CELL_SIZE - 2 * APPLE_OFFSET, LCDBlack);
+	draw_rectangle(snake_to_lcd(x) + APPLE_OFFSET, snake_to_lcd(y) + APPLE_OFFSET, CELL_SIZE - 2 * APPLE_OFFSET, CELL_SIZE - 2 * APPLE_OFFSET, LCDWhite);
 }
 
 void config_Timer()
@@ -75,7 +76,27 @@ void move_snake(MovementDirection direction)
 			// Moving down
 			break;
 	}
-	// Draw board
+	
+	//if jabłko zebrane
+	//{
+	//	snake_size += 1;
+	//	stwórz nowy segment w jego miejscu o wartości snake_size
+	//}
+	//else
+	{
+		//stwórz nowy segment w odpowiednim kierunku o wartości snake_size
+		for (int i = 0; i < GRID_SIZE_X; i++)
+			for (int j = 0; j < GRID_SIZE_Y; j++)
+				if (grid[i][j] > 0)
+					grid[i][j] -= 1;
+	}
+	
+	fill_background(LCDBlack);
+	for (int i = 0; i < GRID_SIZE_X; i++)
+		for (int j = 0; j < GRID_SIZE_Y; j++)
+			if (grid[i][j] > 0)
+				draw_snake_part(i, j)
+	//wygeneruj i narysuj nowe jabłko
 }
 
 int touch_x, touch_y;
@@ -114,6 +135,7 @@ int main()
 	for (int i = 0; i < GRID_SIZE_X; i++)
 		for (int j = 0; j < GRID_SIZE_Y; j++)
 			grid[i][j] = 0;
+	
 	// Starting snake position
 	grid[5][5] = 5;
 	grid[5][6] = 4;

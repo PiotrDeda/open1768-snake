@@ -65,19 +65,19 @@ void calibrate()
 {
 	int discard_x, discard_y;
 	
-	fill_background(LCDWhite);
-	draw_cross(40, LCD_MAX_Y - 40, LCDBlack);
+	fill_background(LCDBlack);
+	draw_cross(40, LCD_MAX_Y - 40, LCDWhite);
 	wait_for_touch(&discard_x, &x1);
 	
-	fill_background(LCDWhite);
-	draw_cross(LCD_MAX_X - 40, LCD_MAX_Y - 40, LCDBlack);
+	fill_background(LCDBlack);
+	draw_cross(LCD_MAX_X - 40, LCD_MAX_Y - 40, LCDWhite);
 	wait_for_touch(&y1, &x2);
 	
-	fill_background(LCDWhite);
-	draw_cross(LCD_MAX_X - 40, 40, LCDBlack);
+	fill_background(LCDBlack);
+	draw_cross(LCD_MAX_X - 40, 40, LCDWhite);
 	wait_for_touch(&y2, &discard_y);
 	
-	fill_background(LCDWhite);
+	fill_background(LCDBlack);
 }
 
 void touch_to_lcd(int *x, int *y)
