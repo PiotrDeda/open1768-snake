@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.pgc": "c",
+        "win.h": "c"
+    }
+}
