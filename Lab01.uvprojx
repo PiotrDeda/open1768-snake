@@ -398,19 +398,9 @@
               <FilePath>.\LCD_ILI9325.c</FilePath>
             </File>
             <File>
-              <FileName>asciiLib.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\asciiLib.c</FilePath>
-            </File>
-            <File>
               <FileName>TP_Open1768.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\TP_Open1768.c</FilePath>
-            </File>
-            <File>
-              <FileName>systick.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\systick.h</FilePath>
             </File>
             <File>
               <FileName>lcdDrawing.h</FileName>
@@ -423,19 +413,9 @@
               <FilePath>.\lcdTouch.h</FilePath>
             </File>
             <File>
-              <FileName>sound.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\sound.h</FilePath>
-            </File>
-            <File>
               <FileName>sound.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\sound.c</FilePath>
-            </File>
-            <File>
-              <FileName>snakeSounds.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\snakeSounds.h</FilePath>
             </File>
             <File>
               <FileName>lose.h</FileName>
