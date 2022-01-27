@@ -427,6 +427,26 @@
               <FileType>5</FileType>
               <FilePath>.\win.h</FilePath>
             </File>
+            <File>
+              <FileName>snake.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\snake.h</FilePath>
+            </File>
+            <File>
+              <FileName>asciiLib.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\asciiLib.c</FilePath>
+            </File>
+            <File>
+              <FileName>asciiLib.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\asciiLib.h</FilePath>
+            </File>
+            <File>
+              <FileName>sound.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\sound.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -3,6 +3,7 @@
 
 #include "Open1768_LCD.h"
 #include "LCD_ILI9325.h"
+#include "asciiLib.h"
 
 void reset_ram()
 {
@@ -53,6 +54,33 @@ void draw_cross(int x, int y, int color)
 		draw_point(i, y, color);
 	for (int i = y - 10; i < y + 11; i++)
 		draw_point(x, i, color);
+}
+
+void draw_char(int x, int y, char c, int font)
+{
+	unsigned char character[16];
+	GetASCIICode(font, character, c);
+	
+	for (int i = 0; i < 16; i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			if (((character[i] >> j) & 1) == 1)
+				draw_point(x + i, LCD_MAX_Y - 8 - y + j, LCDWhite);
+			else
+				draw_point(x + i, LCD_MAX_Y - 8 - y + j, LCDBlack);
+		}
+	}
+}
+
+void draw_string(int x, int y, char* str, int font)
+{
+	int i = 0;
+	while(str[i] != '\0')
+	{
+		draw_char(x, y + i * 8, str[i], font);
+		i++;
+	}
 }
 
 #endif

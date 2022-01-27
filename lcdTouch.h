@@ -61,12 +61,14 @@ void EINT3_IRQHandler(void)
 	LPC_GPIOINT->IO0IntClr |= (1 << 19);
 }
 
-void calibrate()
+uint64_t calibrate()
 {
 	int discard_x, discard_y;
 	
 	fill_background(LCDBlack);
 	draw_cross(40, LCD_MAX_Y - 40, LCDWhite);
+	draw_string(104, 16, "Please touch the crosses", 1);
+	draw_string(120, 16, "to calibrate the screen", 1);
 	wait_for_touch(&discard_x, &x1);
 	
 	fill_background(LCDBlack);
@@ -78,6 +80,8 @@ void calibrate()
 	wait_for_touch(&y2, &discard_y);
 	
 	fill_background(LCDBlack);
+	
+	return discard_x * x1 + y1 * x2 + y2 * discard_y;
 }
 
 void touch_to_lcd(int *x, int *y)
